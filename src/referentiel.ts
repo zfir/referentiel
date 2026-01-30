@@ -131,7 +131,8 @@ class Referentiel {
     const floatsStr = res[1].replace(",", " ").replace("  ", " ").split(" ");
     if (floatsStr.length !== 6) throw new Error("Transform matrix error");
     const floats = floatsStr.map(function (e) {
-      return parseFloat(e);
+      const val = parseFloat(e);
+      return isNaN(val) ? 0 : val;
     }) as [number, number, number, number, number, number]; //! TODO We should do better here.
     return [
       [floats[0], floats[2], floats[4]],
